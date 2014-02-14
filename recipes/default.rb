@@ -11,7 +11,7 @@ end
 bash 'extract_streamtools' do
   cwd '/tmp'
   code <<-EOH
-    gunzip /tmp/st-linux--#{node['streamtools']['version']}.gz
+    gunzip /tmp/st-linux-#{node['streamtools']['version']}.gz
     cp /tmp/st-linux-#{node['streamtools']['version']} /usr/local/bin/st
     /usr/local/bin/st > /tmp/streamtools.log 2>&1 &
     EOH
