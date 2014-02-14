@@ -3,7 +3,7 @@
 # Recipe:: default
 #
 
-remote_file "/tmp/streamtools-#{node['streamtools']['version']}.gz" do
+remote_file "/tmp/st-linux-#{node['streamtools']['version']}.gz" do
   source "https://github.com/nytlabs/streamtools/releases/download/#{node['streamtools']['version']}/st-linux-#{node['streamtools']['version']}.gz"
   action :create_if_missing
 end
