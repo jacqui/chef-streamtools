@@ -13,6 +13,7 @@ bash 'extract_streamtools' do
   code <<-EOH
     gunzip /tmp/st-linux-#{node['streamtools']['version']}.gz
     cp /tmp/st-linux-#{node['streamtools']['version']} /usr/local/bin/st
+    chmod +x /usr/local/bin/st
     /usr/local/bin/st > /tmp/streamtools.log 2>&1 &
     EOH
 end
