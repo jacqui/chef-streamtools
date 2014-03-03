@@ -6,7 +6,7 @@
 # make sure the GOPATH directory structure exists
 directory node['streamtools']['directory'] do
   action :create
-  recurse true
+  recursive true
 end
 
 # grab the specified repository and branch of streamtools
