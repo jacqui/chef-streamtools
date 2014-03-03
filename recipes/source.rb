@@ -29,7 +29,7 @@ bash "build_streamtools" do
   EOH
   action :nothing
   only_if do
-    !File.exists?("./build/st")
+    !File.exists?("#{node['streamtools']['directory']}/build/st")
   end
 end
 
