@@ -4,14 +4,14 @@
 #
 
 # make sure the GOPATH directory structure exists
-directory "/home/ubuntu/go/src/github.com/nytlabs/streamtools" do
+directory node['streamtools']['directory'] do
   action :create
   recurse true
 end
 
 # grab the specified repository and branch of streamtools
 # then notify the next block to build and run it
-git "/home/ubuntu/go/src/github.com/nytlabs/streamtools" do
+git node['streamtools']['directory'] do
   repository node['streamtools']['repository']
   revision node['streamtools']['branch']
   action :sync
@@ -21,7 +21,7 @@ end
 
 # this is only run when the git block tells it to
 bash "build_streamtools" do
-  cwd "/home/ubuntu/go/src/github.com/nytlabs/streamtools"
+  cwd node['streamtools']['directory']
   user "ubuntu"
   code <<-EOH
      make
