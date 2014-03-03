@@ -27,9 +27,9 @@ bash "build_streamtools" do
      make
      ./build/st > /tmp/streamtools.log 2>&1 &
   EOH
-  action :nothing
   only_if do
     !File.exists?("#{node['streamtools']['directory']}/build/st")
   end
+  action :run
 end
 
