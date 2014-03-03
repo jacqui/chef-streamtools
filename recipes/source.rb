@@ -28,5 +28,8 @@ bash "build_streamtools" do
      ./build/st > /tmp/streamtools.log 2>&1 &
   EOH
   action :nothing
+  only_if do
+    !File.exists?("./build/st")
+  end
 end
 
