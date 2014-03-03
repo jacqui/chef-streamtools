@@ -19,17 +19,27 @@ git node['streamtools']['directory'] do
   notifies :run, "bash[build_streamtools]"
 end
 
+service "streamtools" do
+  provider Chef::Provider::Service::Upstart
+  supports :enable => true, :restart => true, :status => true
+end
+
 # this is only run when the git block tells it to
 bash "build_streamtools" do
   cwd node['streamtools']['directory']
   user "ubuntu"
   code <<-EOH
      make
-     ./build/st > /tmp/streamtools.log 2>&1 &
   EOH
   only_if do
     !File.exists?("#{node['streamtools']['directory']}/build/st")
   end
   action :run
+  notifies :restart, "service[streamtools]", :delayed
+end
+
+template "/etc/init/streamtools.conf" do
+  source "upstart.streamtools.conf"
+  notifies :restart, "service[streamtools]", :delayed
 end
 
