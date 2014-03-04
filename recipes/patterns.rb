@@ -24,7 +24,7 @@ bash "post_pattern" do
   EOH
   action :nothing
   only_if do
-    File.exists?(File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file']))
+    File.exists?(File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])) || node['streamtools']['force_post_pattern']
   end
 end
 
