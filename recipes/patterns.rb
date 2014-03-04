@@ -22,9 +22,9 @@ bash "post_pattern" do
   code <<-EOH
     curl -XPOST http://localhost:7070/import -d@#{File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])}
   EOH
-  action :nothing
+  action :run
   only_if do
-    File.exists?(File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])) || node['streamtools']['force_post_pattern']
+    File.exists?(File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])) && node['streamtools']['force_post_pattern']
   end
 end
 
