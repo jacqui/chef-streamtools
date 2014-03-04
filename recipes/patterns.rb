@@ -10,7 +10,8 @@ git node['streamtools']['patterns_directory'] do
   revision node['streamtools']['patterns_branch']
   action :sync
   user "ubuntu"
-  notifies :run, "bash[post_pattern]"
+  notifies :restart, "service[streamtools]", :immediately
+  notifies :run, "bash[post_pattern]", :delayed
   not_if do
     node['streamtools']['patterns_repository'] == ''
   end
