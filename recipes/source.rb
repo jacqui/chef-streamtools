@@ -22,6 +22,7 @@ end
 service "streamtools" do
   provider Chef::Provider::Service::Upstart
   supports :enable => true, :restart => true, :status => true
+  notifies :run, "bash[post_pattern]", :delayed
 end
 
 # this is only run when the git block tells it to
