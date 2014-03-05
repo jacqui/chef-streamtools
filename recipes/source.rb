@@ -22,7 +22,7 @@ end
 # this is only run when the git block tells it to
 bash "build_streamtools" do
   cwd node['streamtools']['directory']
-  environment { "PATH" => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/go/bin:/home/ubuntu/go/bin" }
+  environment "PATH" => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/go/bin:/home/ubuntu/go/bin"
   user "ubuntu"
   code <<-EOH
      make
