@@ -32,10 +32,7 @@ bash "build_streamtools" do
   code <<-EOH
      make
   EOH
-  only_if do
-    !File.exists?("#{node['streamtools']['directory']}/build/st")
-  end
-  action :run
+  action :nothing
   notifies :restart, "service[streamtools]", :delayed
 end
 

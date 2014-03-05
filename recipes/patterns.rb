@@ -23,8 +23,5 @@ bash "post_pattern" do
     curl -XPOST http://localhost:7070/import -d@#{File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])}
   EOH
   action :nothing
-  only_if do
-    File.exists?(File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file']))
-  end
 end
 
