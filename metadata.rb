@@ -5,4 +5,4 @@ license          'Apache'
 description      'Installs/configures streamtools'
 recommends       'golang'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.23'
+version          '0.1.24'
