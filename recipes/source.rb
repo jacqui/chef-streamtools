@@ -19,12 +19,6 @@ git node['streamtools']['directory'] do
   notifies :run, "bash[build_streamtools]"
 end
 
-service "streamtools" do
-  provider Chef::Provider::Service::Upstart
-  supports :enable => true, :restart => true, :status => true
-  notifies :run, "bash[post_pattern]", :delayed
-end
-
 # this is only run when the git block tells it to
 bash "build_streamtools" do
   cwd node['streamtools']['directory']
@@ -33,11 +27,17 @@ bash "build_streamtools" do
      make
   EOH
   action :nothing
-  notifies :restart, "service[streamtools]", :delayed
+  notifies :restart, "service[streamtools]", :immediately
 end
 
 template "/etc/init/streamtools.conf" do
   source "upstart.streamtools.conf"
-  notifies :restart, "service[streamtools]", :delayed
+  notifies :restart, "service[streamtools]", :immediately
+end
+
+service "streamtools" do
+  provider Chef::Provider::Service::Upstart
+  supports :enable => true, :restart => true, :status => true
+  notifies :run, "bash[post_pattern]", :delayed
 end
 
