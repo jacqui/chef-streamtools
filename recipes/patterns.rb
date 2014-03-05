@@ -22,6 +22,9 @@ bash "post_pattern" do
   code <<-EOH
     curl -XPOST http://localhost:7070/import -d@#{File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])}
   EOH
-  action :nothing
+  action :run
+  not_if do
+    node['streamtools']['patterns_repository'] == ''
+  end
 end
 

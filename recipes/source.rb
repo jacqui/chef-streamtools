@@ -26,7 +26,7 @@ bash "build_streamtools" do
   code <<-EOH
      make
   EOH
-  action :nothing
+  action :run
   notifies :restart, "service[streamtools]", :immediately
 end
 
