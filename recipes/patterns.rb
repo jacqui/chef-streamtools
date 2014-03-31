@@ -11,7 +11,6 @@ git node['streamtools']['patterns_directory'] do
   action :sync
   user "ubuntu"
   notifies :restart, "service[streamtools]", :immediately
-  notifies :run, "bash[post_pattern]", :delayed
   not_if do
     node['streamtools']['patterns_repository'] == ''
   end
