@@ -6,6 +6,7 @@
 # make sure the GOPATH directory structure exists
 directory node['streamtools']['directory'] do
   action :create
+  user "ubuntu"
   recursive true
 end
 
