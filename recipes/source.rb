@@ -16,7 +16,7 @@ git node['streamtools']['directory'] do
   revision node['streamtools']['branch']
   action :sync
   user "ubuntu"
-  notifies :run, "bash[build_streamtools]"
+  notifies :run, "bash[build_streamtools]", :immediately
 end
 
 # this is only run when the git block tells it to
@@ -27,7 +27,6 @@ bash "build_streamtools" do
   code <<-EOH
      make
   EOH
-  action :nothing
   notifies :restart, "service[streamtools]", :immediately
 end
 
