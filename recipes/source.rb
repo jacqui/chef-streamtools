@@ -28,7 +28,7 @@ bash "build_streamtools" do
   code <<-EOH
      make
   EOH
-  notifies :restart, "service[streamtools]", :immediately
+  notifies :restart, "service[streamtools]", :delayed
 end
 
 template "/etc/init/streamtools.conf" do
