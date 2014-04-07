@@ -15,6 +15,13 @@ directory node['streamtools']['directory'] do
   recursive true
 end
 
+bash "fix_owner" do
+  code <<-EOH
+  chown -R ubuntu #{node['streamtools']['directory']}
+  EOH
+  action :run
+end
+
 # grab the specified repository and branch of streamtools
 # then notify the next block to build and run it
 git node['streamtools']['directory'] do
