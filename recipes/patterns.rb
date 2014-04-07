@@ -22,5 +22,6 @@ bash "post_pattern" do
     curl -XPOST http://localhost:7070/import -d@#{File.join(node['streamtools']['patterns_directory'], node['streamtools']['pattern_file'])}
   EOH
   action :nothing
+  subscribes :run, "service[streamtools]", :immediately
 end
 

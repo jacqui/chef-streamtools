@@ -45,6 +45,5 @@ service "streamtools" do
   provider Chef::Provider::Service::Upstart
   supports :enable => true, :restart => true, :status => true
   action :restart
-  notifies :run, "bash[post_pattern]", :delayed
 end
 
