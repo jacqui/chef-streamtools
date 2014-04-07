@@ -8,4 +8,4 @@ depends         'build-essential'
 depends         'git'
 depends       'golang'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.4'
+version          '0.2.5'

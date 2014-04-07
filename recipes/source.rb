@@ -11,7 +11,7 @@ include_recipe "golang"
 # make sure the GOPATH directory structure exists
 directory node['streamtools']['directory'] do
   action :create
-  user "ubuntu"
+  owner "ubuntu"
   recursive true
 end
 
