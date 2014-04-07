@@ -3,6 +3,11 @@
 # Recipe:: source
 #
 
+include_recipe "apt"
+include_recipe "build-essential"
+include_recipe "git"
+include_recipe "golang"
+
 # make sure the GOPATH directory structure exists
 directory node['streamtools']['directory'] do
   action :create
