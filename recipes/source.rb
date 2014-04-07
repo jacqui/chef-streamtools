@@ -16,7 +16,7 @@ directory node['streamtools']['directory'] do
 end
 
 execute "fix_owner" do
-  command "chown -R ubuntu #{node['streamtools']['directory']}"
+  command "chown -R ubuntu #{node['streamtools']['go_home']}"
 end
 
 # grab the specified repository and branch of streamtools
