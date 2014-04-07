@@ -15,11 +15,8 @@ directory node['streamtools']['directory'] do
   recursive true
 end
 
-bash "fix_owner" do
-  code <<-EOH
-  chown -R ubuntu #{node['streamtools']['directory']}
-  EOH
-  action :run
+execute "fix_owner" do
+  command "chown -R ubuntu #{node['streamtools']['directory']}"
 end
 
 # grab the specified repository and branch of streamtools
